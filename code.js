@@ -1,8 +1,8 @@
-// Created by: ????
-// Created on: ???? 2019
-// This file is the "????" game
-//   for CircuitPython
-
+enum ActionKind {
+    Walking,
+    Idle,
+    Jumping
+}
 namespace myTiles {
     //% blockIdentity=images._tile
     export const tile0 = img`
@@ -25,11 +25,11 @@ namespace myTiles {
     `
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sprite, location) {
-    music.playMelody("C5 - C5 - - - - - ", 400)
+    music.playMelody("C5 B C5 B F E D C ", 400)
     game.over(true)
 })
 info.onCountdownEnd(function () {
-    info.changeScoreBy(-5)
+    info.changeScoreBy(-10)
 })
 let mySprite = sprites.create(img`
     . . . . . . f f f f f f . . . .
@@ -51,15 +51,15 @@ let mySprite = sprites.create(img`
 `, SpriteKind.Player)
 controller.moveSprite(mySprite)
 tiles.setTilemap(tiles.createTilemap(
-            hex`100010000e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e1817171717171a171717171717170e0e1a1a1a1717171a17171717171a1a0e0e171b1a171a171a1717171a1717170e0e1a1a1a1a1a171a1717171a1717170e0e171717171a171a1a1a1a1a1717170e0e1a171a171717171717171a1717170e0e17171a1a1a1a1a1a1a171717171a0e0e171a1b17171717171a171a171a1a0e0e1717171a1a171a171a1717171a17190e171a171a17171a17171717171a170e0e171a171a171a1a1a1a171a1a17170e0e171a171a171a17171a1a1a17171a0e0e171a1a1a1b1a171a1a1717171a1a0e0e17171b1b1b1b1b1717171b1b1b1b0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e`,
+            hex`100010000e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e1817171717171a171717171717170e0e1a1a1a1717171b17171717171a1a0e0e171b1a171a171a1a1a1b1a1717170e0e1a1a1a1a1a171a17171b1a1717170e0e171717171a171a1a1a1b1a1717170e0e1a171a17171717171a171a1717170e0e17171a1a1a1a1a1a1a171717171a0e0e171a1b17171717171a171a171a1a0e0e1717171a1a171a171a1717171a17190e171a171a17171a171b1717171a170e0e171a171a171a1a1a1a171a1a17170e0e171a171a171a17171a1a1a17171a0e0e171a1a1a1b1a171a1a1717171a1a0e0e17171b1b1b1b1b1717171b1b1b1b0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e`,
             img`
                 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
                 2 . . . . . . 2 . . . . . . . 2
-                2 2 2 2 . . . 2 . . . . . 2 2 2
-                2 . . 2 . 2 . 2 . . . 2 . . . 2
+                2 2 2 2 . . . . . . . . . 2 2 2
+                2 . . 2 . 2 . 2 2 2 . 2 . . . 2
                 2 2 2 2 2 2 . 2 . . . 2 . . . 2
-                2 . . . . 2 . 2 2 2 2 2 . . . 2
-                2 2 . 2 . . . . . . . 2 . . . 2
+                2 . . . . 2 . 2 2 2 . 2 . . . 2
+                2 2 . 2 . . . . . 2 . 2 . . . 2
                 2 . . 2 2 2 2 2 2 2 . . . . 2 2
                 2 . 2 . . . . . . 2 . 2 . 2 2 2
                 2 . . . 2 2 . 2 . 2 . . . 2 . .
@@ -78,3 +78,4 @@ scene.cameraFollowSprite(mySprite)
 info.changeScoreBy(11)
 info.changeScoreBy(-1)
 info.startCountdown(15)
+game.showLongText("Find your way out of the maze good luck!", DialogLayout.Bottom)
